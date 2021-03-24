@@ -10,6 +10,10 @@
 
       <router-outlet name="aux"></router-outlet>
 
+      <div *ngIf="showLoadingIndicator" style="position: absolute; left:0px; top:0px; background-color: gainsboro; color: crimson; font-weight: bold; font-size:50px">
+        Bitte warten!
+      </div>
+
     </div>
 
 
