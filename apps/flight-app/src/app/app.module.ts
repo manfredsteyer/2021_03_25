@@ -26,7 +26,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
     FlightLibModule.forRoot(),
     SharedModule.forRoot(),
-    RouterModule.forRoot(APP_ROUTES, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(APP_ROUTES, { }),
   ],
   declarations: [
     AppComponent,
