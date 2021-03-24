@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from './shared/shared.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CustomPreloadStrategy } from './shared/preloading/custom-preloading.strategy';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   imports: [
@@ -25,6 +26,14 @@ import { CustomPreloadStrategy } from './shared/preloading/custom-preloading.str
 
     BrowserAnimationsModule,
     FlightCancellingModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        sendAccessToken: true,
+        allowedUrls: ['http://www.angular.at/api/']
+          //             ^-------- Real world: Always HTTPS 
+      }
+    }),
+
 
     FlightLibModule.forRoot(),
     SharedModule.forRoot(),

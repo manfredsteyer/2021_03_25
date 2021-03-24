@@ -1,17 +1,28 @@
 import { Injectable } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  userName: string = null;
+  //userName: string = null;
+
+  get userName(): string {
+    const claims = this.oauthService.getIdentityClaims();
+    if (!claims) return null;
+    return claims['given_name'];
+      //               ^-------------- OIDC
+  }
+
+  constructor(private oauthService: OAuthService) {
+  }
 
   login(un: string): void {
-    this.userName = un;
+    this.oauthService.initLoginFlow();
   }
 
   logout(): void {
-    this.userName = null;
+    this.oauthService.logOut();
   }
 }

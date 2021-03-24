@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { debounceTime, filter } from 'rxjs/operators';
+import { authCodeFlowConfig } from './auth.config';
 
 @Component({
   selector: 'flight-app',
@@ -12,8 +14,12 @@ export class AppComponent implements OnInit {
   showLoadingIndicator = false;
   
   
-  constructor(private router: Router) {
+  constructor(
+    private oauthService: OAuthService,
+    private router: Router) {
 
+      oauthService.configure(authCodeFlowConfig);
+      oauthService.loadDiscoveryDocumentAndTryLogin();
   }
   
   ngOnInit(): void {
